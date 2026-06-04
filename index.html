@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfect-Princess Makuwerere</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #f8f8f7;
+      --surface:      #ffffff;
+      --border:       #e4e4e2;
+      --border-soft:  #efefed;
+      --text:         #141414;
+      --sub:          #3d3d3d;
+      --muted:        #747474;
+      --faint:        #9a9a9a;
+      --accent:       #1d4ed8;
+      --accent-dim:   #dbeafe;
+      --accent-ring:  #93c5fd;
+      --tag-bg:       #f1f3f5;
+      --tag-text:     #4a5568;
+      --mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    html { font-size: 15px; scroll-behavior: smooth; }
+    body  { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.65; }
+    a     { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 28px; }
+
+    /* ─── HEADER ─────────────────────────────────────────── */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 52px 0 40px;
+    }
+
+    .h-row { display: flex; gap: 28px; align-items: flex-start; }
+
+    .monogram {
+      width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(145deg, #1d4ed8 0%, #6d28d9 100%);
+      color: #fff; font-size: 1.15rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      letter-spacing: -0.5px; font-family: var(--sans);
+    }
+
+    .h-info h1 {
+      font-size: 1.55rem; font-weight: 700; letter-spacing: -0.5px; line-height: 1.2;
+    }
+    .h-role {
+      font-family: var(--mono); font-size: 0.8rem;
+      color: var(--muted); margin-top: 5px;
+    }
+    .h-where { font-size: 0.84rem; color: var(--muted); margin-top: 2px; }
+
+    .h-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .h-links a {
+      font-size: 0.78rem; color: var(--muted);
+      background: var(--tag-bg); border: 1px solid var(--border);
+      padding: 4px 11px; border-radius: 4px;
+      transition: color .15s, border-color .15s;
+    }
+    .h-links a:hover { color: var(--accent); border-color: var(--accent-ring); text-decoration: none; }
+
+    /* ─── MAIN ───────────────────────────────────────────── */
+    main { padding: 44px 0 88px; }
+    section { margin-bottom: 52px; }
+
+    .sec-label {
+      font-size: 0.68rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: .12em; color: var(--faint);
+      padding-bottom: 10px; margin-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ─── BIO ────────────────────────────────────────────── */
+    .bio { font-size: 0.94rem; line-height: 1.8; color: var(--sub); max-width: 700px; }
+    .bio strong { color: var(--text); font-weight: 600; }
+
+    /* ─── NOW ────────────────────────────────────────────── */
+    .now-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 5px; padding: 14px 18px;
+      font-size: 0.84rem; color: var(--sub); max-width: 600px;
+    }
+    .now-box span { color: var(--accent); font-weight: 600; margin-right: 6px; }
+
+    /* ─── FOCUS TAGS ─────────────────────────────────────── */
+    .focus-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .ftag {
+      font-family: var(--mono); font-size: 0.78rem;
+      background: var(--accent-dim); color: var(--accent);
+      border: 1px solid #bfdbfe; padding: 4px 12px; border-radius: 4px;
+    }
+
+    /* ─── PROJECT GRID ───────────────────────────────────── */
+    .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    .proj-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 6px; padding: 20px 20px 16px;
+      display: flex; flex-direction: column; gap: 10px;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .proj-card:hover {
+      border-color: #c7d2fe;
+      box-shadow: 0 3px 12px rgba(29,78,216,.07);
+    }
+
+    .proj-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+    .proj-name { font-size: 0.9rem; font-weight: 600; color: var(--text); letter-spacing: -0.15px; }
+
+    .proj-gh {
+      font-size: 0.72rem; white-space: nowrap; flex-shrink: 0;
+      color: var(--muted); border: 1px solid var(--border);
+      padding: 3px 8px; border-radius: 3px;
+      transition: color .15s, border-color .15s;
+    }
+    .proj-gh:hover { color: var(--accent); border-color: var(--accent-ring); text-decoration: none; }
+
+    .proj-desc { font-size: 0.83rem; color: #4a4a4a; line-height: 1.65; flex: 1; }
+
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .ptag {
+      font-family: var(--mono); font-size: 0.68rem;
+      background: var(--tag-bg); color: var(--tag-text);
+      padding: 2px 7px; border-radius: 3px;
+    }
+
+    /* ─── SKILLS ─────────────────────────────────────────── */
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .sk-group h4 {
+      font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted); margin-bottom: 10px;
+    }
+    .sk-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    .sk {
+      font-family: var(--mono); font-size: 0.74rem;
+      background: var(--tag-bg); color: var(--tag-text);
+      padding: 3px 9px; border-radius: 3px;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 22px 0;
+      font-size: 0.78rem; color: var(--faint); text-align: center;
+    }
+    footer a { color: var(--faint); }
+    footer a:hover { color: var(--accent); }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .proj-grid   { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .h-row       { flex-direction: column; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ HEADER -->
+<header>
+  <div class="wrap">
+    <div class="h-row">
+      <div class="monogram">PP</div>
+      <div class="h-info">
+        <h1>Perfect-Princess Makuwerere</h1>
+        <div class="h-role">AI Systems · LLM Infrastructure · Benchmarking</div>
+        <div class="h-where">Stevens Institute of Technology &nbsp;·&nbsp; New York</div>
+        <nav class="h-links">
+          <a href="https://github.com/naku2001" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/perfectmakuwerere" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://twitter.com/bitcrafter_" target="_blank" rel="noopener">@bitcrafter_</a>
+          <a href="mailto:perfectprincessmakuwerere98@gmail.com">Email</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════ MAIN -->
+<main>
+  <div class="wrap">
+
+    <!-- About -->
+    <section>
+      <div class="sec-label">About</div>
+      <p class="bio">
+        I'm a researcher and builder at <strong>Stevens Institute of Technology</strong> focused on
+        the infrastructure that makes large language models work in practice. My work sits at the
+        intersection of <strong>LLM training, inference serving, performance benchmarking, and
+        embedding evaluation</strong> — the unglamorous but load-bearing parts of the ML stack that
+        determine whether a model is actually usable, not just well-scored. I care about
+        <strong>measurement</strong>: building systems that surface real runtime behavior, not just
+        what a loss curve reports. Outside the IDE, I think about the geometry of the universe and
+        the math behind human intuition.
+      </p>
+    </section>
+
+    <!-- Currently -->
+    <section style="margin-bottom:40px;">
+      <div class="sec-label">Currently</div>
+      <div class="now-box">
+        <span>↳</span>
+        Building tools for local LLM benchmarking and embedding evaluation at Stevens.
+        Exploring attention-FFN disaggregation for dense model serving.
+      </div>
+    </section>
+
+    <!-- Focus -->
+    <section>
+      <div class="sec-label">Research &amp; Technical Focus</div>
+      <div class="focus-row">
+        <span class="ftag">LLM Training</span>
+        <span class="ftag">Inference Serving</span>
+        <span class="ftag">Performance Benchmarking</span>
+        <span class="ftag">Embedding Evaluation</span>
+        <span class="ftag">Distributed Training</span>
+        <span class="ftag">Retrieval-Augmented Generation</span>
+        <span class="ftag">Pipeline Parallelism</span>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section>
+      <div class="sec-label">Selected Projects</div>
+      <div class="proj-grid">
+
+        <!-- Metrics -->
+        <div class="proj-card">
+          <div class="proj-top">
+            <span class="proj-name">Metrics — AI Benchmarking Dashboard</span>
+            <a class="proj-gh" href="https://github.com/naku2001/Metrics" target="_blank" rel="noopener">↗ GitHub</a>
+          </div>
+          <p class="proj-desc">
+            Local web application for evaluating embedding models and Ollama LLMs on real hardware.
+            Ingests PDFs, generates synthetic QA pairs via OpenRouter, and evaluates up to 6 embedding
+            models simultaneously using MRR, NDCG@K, and Recall@K. LLM module streams live inference
+            while measuring TTFT and throughput with hardware-aware thresholds across NVIDIA, AMD, and CPU.
+          </p>
+          <div class="proj-tags">
+            <span class="ptag">FastAPI</span><span class="ptag">React</span>
+            <span class="ptag">sentence-transformers</span><span class="ptag">ranx</span>
+            <span class="ptag">Ollama</span><span class="ptag">pynvml</span><span class="ptag">t-SNE</span>
+          </div>
+        </div>
+
+        <!-- LLM-Benchmark -->
+        <div class="proj-card">
+          <div class="proj-top">
+            <span class="proj-name">variant-bench — LLM Benchmarking CLI</span>
+            <a class="proj-gh" href="https://github.com/naku2001/LLM-Benchmark" target="_blank" rel="noopener">↗ GitHub</a>
+          </div>
+          <p class="proj-desc">
+            CLI tool that answers: <em>which model variant gives the best quality-per-second on this
+            hardware?</em> Measures TTFT, tokens/sec, cosine similarity, and ROUGE-L across Ollama
+            model families. Runs context-length sweeps (512–4096 tokens), surfaces a Pareto-optimal
+            recommendation, and exports JSON, Markdown tables, and scatter/line charts.
+          </p>
+          <div class="proj-tags">
+            <span class="ptag">Python</span><span class="ptag">Click</span>
+            <span class="ptag">sentence-transformers</span><span class="ptag">ROUGE-L</span>
+            <span class="ptag">Ollama API</span><span class="ptag">nvidia-smi</span>
+          </div>
+        </div>
+
+        <!-- micropipeline -->
+        <div class="proj-card">
+          <div class="proj-top">
+            <span class="proj-name">micropipeline — Pipeline Parallelism</span>
+            <a class="proj-gh" href="https://github.com/naku2001/micropipeline" target="_blank" rel="noopener">↗ GitHub</a>
+          </div>
+          <p class="proj-desc">
+            PyTorch implementation of distributed pipeline parallelism that shards model layers
+            across multiple GPUs. Manages forward activation passing and backward gradient flow
+            between ranks using NCCL and Gloo backends via torchrun. Written as a clean, readable
+            reference for understanding LLM training infrastructure at the systems level.
+          </p>
+          <div class="proj-tags">
+            <span class="ptag">PyTorch</span><span class="ptag">torchrun</span>
+            <span class="ptag">NCCL</span><span class="ptag">Gloo</span><span class="ptag">CUDA</span>
+          </div>
+        </div>
+
+        <!-- microtransformer -->
+        <div class="proj-card">
+          <div class="proj-top">
+            <span class="proj-name">microtransformer — Transformer from Scratch</span>
+            <a class="proj-gh" href="https://github.com/naku2001/microtransformer" target="_blank" rel="noopener">↗ GitHub</a>
+          </div>
+          <p class="proj-desc">
+            GPT-style transformer built from scratch in PyTorch, including multi-head attention and a
+            flash attention implementation. Small enough to run on a laptop while preserving the full
+            mechanics of modern language model architectures — attention, residual streams, and
+            positional encoding included.
+          </p>
+          <div class="proj-tags">
+            <span class="ptag">PyTorch</span><span class="ptag">Flash Attention</span>
+            <span class="ptag">Multi-head Attention</span><span class="ptag">Jupyter</span>
+          </div>
+        </div>
+
+        <!-- Benchmark-Embeddings -->
+        <div class="proj-card">
+          <div class="proj-top">
+            <span class="proj-name">Benchmark-Embeddings</span>
+            <a class="proj-gh" href="https://github.com/naku2001/Benchmark-Embeddings" target="_blank" rel="noopener">↗ GitHub</a>
+          </div>
+          <p class="proj-desc">
+            Systematic evaluation of embedding models across tasks and datasets. Includes a data
+            scraper for corpus collection, curated evaluation sets, and a notebook-based analysis
+            pipeline for comparing retrieval and semantic similarity performance across HuggingFace
+            model families.
+          </p>
+          <div class="proj-tags">
+            <span class="ptag">Python</span><span class="ptag">Jupyter</span>
+            <span class="ptag">HuggingFace</span><span class="ptag">Retrieval Metrics</span>
+          </div>
+        </div>
+
+        <!-- SprintStudy -->
+        <div class="proj-card">
+          <div class="proj-top">
+            <span class="proj-name">SprintStudy — RAG Study Assistant</span>
+            <a class="proj-gh" href="https://github.com/naku2001/SprintStudy" target="_blank" rel="noopener">↗ GitHub</a>
+          </div>
+          <p class="proj-desc">
+            Full-stack RAG application that chunks academic documents into vectors, stores them in
+            Pinecone, and streams structured summaries with intelligent flashcard generation via
+            Server-Sent Events. Supports PDF and TXT input, model selection across Gemini and
+            Together AI, and a persistent note library with embedding previews.
+          </p>
+          <div class="proj-tags">
+            <span class="ptag">Flask</span><span class="ptag">React</span>
+            <span class="ptag">Pinecone</span><span class="ptag">Gemini</span>
+            <span class="ptag">RAG</span><span class="ptag">SSE</span><span class="ptag">PyMuPDF</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section>
+      <div class="sec-label">Technical Skills</div>
+      <div class="skills-grid">
+        <div class="sk-group">
+          <h4>ML / AI</h4>
+          <div class="sk-list">
+            <span class="sk">PyTorch</span>
+            <span class="sk">HuggingFace</span>
+            <span class="sk">sentence-transformers</span>
+            <span class="sk">Keras</span>
+            <span class="sk">Ollama</span>
+            <span class="sk">LangChain</span>
+          </div>
+        </div>
+        <div class="sk-group">
+          <h4>Infrastructure &amp; Serving</h4>
+          <div class="sk-list">
+            <span class="sk">torchrun</span>
+            <span class="sk">NCCL</span>
+            <span class="sk">FastAPI</span>
+            <span class="sk">Flask</span>
+            <span class="sk">Pinecone</span>
+            <span class="sk">Docker</span>
+          </div>
+        </div>
+        <div class="sk-group">
+          <h4>Languages &amp; Tools</h4>
+          <div class="sk-list">
+            <span class="sk">Python</span>
+            <span class="sk">JavaScript</span>
+            <span class="sk">React</span>
+            <span class="sk">SQL</span>
+            <span class="sk">Git</span>
+            <span class="sk">Jupyter</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- ═══════════════════════════════════════ FOOTER -->
+<footer>
+  <div class="wrap">
+    <a href="mailto:perfectprincessmakuwerere98@gmail.com">perfectprincessmakuwerere98@gmail.com</a>
+    &nbsp;·&nbsp; Stevens Institute of Technology &nbsp;·&nbsp; New York
+  </div>
+</footer>
+
+</body>
+</html>
